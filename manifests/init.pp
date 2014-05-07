@@ -56,4 +56,9 @@ class skyline {
     require  => Package['git'],
   }
 
+  file { '/opt/skyline/src/settings.py':
+    ensure  => present,
+    content => template('skyline/settings.py.erb'),
+  }
+
 }
