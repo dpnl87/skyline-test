@@ -1,4 +1,4 @@
-class skyline {
+class skyline inherits skyline::params {
 
   $system_packages = [
     'python-pip',
