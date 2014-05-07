@@ -26,12 +26,12 @@ class skyline::service {
   service { 'skyline-horizon': } ->
   file { '/etc/init/skyline-analyzer.conf':
     ensure => present,
-    content => template('skyline/init/skyline-analyzer.conf.erb'),
+    content => template('skyline/init/analyzer.conf.erb'),
   } ~>
   service { 'skyline-analyzer': } ->
   file { '/etc/init/skyline-webapp.conf':
     ensure => present,
-    content => template('skyline/init/skyline-webapp.conf.erb'),
+    content => template('skyline/init/webapp.conf.erb'),
   } ~>
   service { 'skyline-webapp': }
 
