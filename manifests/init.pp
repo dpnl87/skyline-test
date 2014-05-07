@@ -61,4 +61,6 @@ class skyline inherits skyline::params {
     content => template('skyline/settings.py.erb'),
   }
 
+  include skyline::service  
+
 }
