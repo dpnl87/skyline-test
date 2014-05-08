@@ -9,7 +9,6 @@ class skyline inherits skyline::params {
   ]
 
   $python_packages = [
-    'redis',
     'hiredis',
     'python-daemon',
     'flask',
@@ -42,6 +41,12 @@ class skyline inherits skyline::params {
     ensure   => installed,
     provider => pip,
     require  => Package['patsy'],
+  }
+
+  package { 'pip_redis',:
+    ensure   => installed,
+    provider => pip,
+    name     => 'redis',
   }
 
   file { $directories:
