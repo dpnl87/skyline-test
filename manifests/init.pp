@@ -43,7 +43,7 @@ class skyline inherits skyline::params {
     require  => Package['patsy'],
   }
 
-  package { 'pip_redis',:
+  package { 'pip_redis':
     ensure   => installed,
     provider => pip,
     name     => 'redis',
