@@ -4,6 +4,7 @@ class skyline inherits skyline::params {
     'python-pip',
     'python-numpy',
     'python-scipy',
+    $python_dev_pkg,
     $redis_package,
     'python-redis',
     'git',

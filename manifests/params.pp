@@ -9,10 +9,12 @@ class skyline::params {
 
   case $::osfamily {
     'RedHat': {
-      $redis_package = 'redis'
+      $redis_package  = 'redis'
+      $python_dev_pkg = 'python-devel'
     }
     'Debian': {
-      $redis_package = 'redis-server'
+      $redis_package  = 'redis-server'
+      $python_dev_pkg = 'python-dev'
     }
   }
 
