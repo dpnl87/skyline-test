@@ -4,7 +4,7 @@ class skyline inherits skyline::params {
     'python-pip',
     'python-numpy',
     'python-scipy',
-    'redis-server',
+    $redis_package,
     'git',
   ]
 
@@ -30,7 +30,6 @@ class skyline inherits skyline::params {
 
   package { $system_packages:
     ensure  => installed,
-    require => Apt::Source['debian'],
   }
 
   package { $python_packages:
@@ -61,6 +60,6 @@ class skyline inherits skyline::params {
     content => template('skyline/settings.py.erb'),
   }
 
-  include skyline::service  
+  include skyline::service
 
 }

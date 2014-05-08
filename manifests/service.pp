@@ -2,7 +2,7 @@ class skyline::service {
 
   Service {
     ensure   => running,
-    provider => 'upstart',
+    provider => 'debian',
   }
 
   service { 'redis-server':
