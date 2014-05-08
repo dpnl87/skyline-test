@@ -7,11 +7,13 @@ class skyline::params {
   $webapp_ip      = '127.0.0.1'
   $webapp_port    = 1500
 
-case $::osfamily {
-  'RedHat': {
-    $redis_package = 'redis'
+  case $::osfamily {
+    'RedHat': {
+      $redis_package = 'redis'
+    }
+    'Debian': {
+      $redis_package = 'redis-server'
+    }
   }
-  'Debian': {
-    $redis_package = 'redis-server'
-  }
+
 }
