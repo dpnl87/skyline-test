@@ -1,13 +1,13 @@
-class skyline::service {
+class skyline::service inherits skyline::params {
 
   Service {
     ensure   => running,
-    provider => 'debian',
+    provider => 'upstart',
   }
 
   service { 'redis-server':
     ensure  => stopped,
-    require => Package['redis-server'],
+    require => Package[$redis_package],
   } ->
   file { '/etc/init.d/redis-server':
     ensure => absent,
