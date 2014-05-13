@@ -2,8 +2,6 @@ class skyline inherits skyline::params {
 
   $system_packages = [
     'python-pip',
-    'python-numpy',
-    'python-scipy',
     $python_dev_pkg,
     $redis_package,
     'python-redis',
@@ -11,6 +9,8 @@ class skyline inherits skyline::params {
   ]
 
   $python_packages = [
+    'numpy',
+    'scipy',
     'hiredis',
     'python-daemon',
     'flask',
