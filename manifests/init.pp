@@ -6,23 +6,17 @@ class skyline inherits skyline::params {
     $redis_package,
     'python-redis',
     'git',
-    'numpy',
-    'scipy',
-    'sympy',
     'python-nose',
   ]
 
-  $python_packages = [
-    'hiredis',
-    'python-daemon',
-    'flask',
-    'simplejson',
-    'patsy',
-    'msgpack_python',
-    'unittest2',
-    'mock',
-    'pandas',
-  ]
+  # $python_packages = [
+  #   'hiredis',
+  #   'python-daemon',
+  #   'flask',
+  #   'simplejson',
+  #   'unittest2',
+  #   'mock',
+  # ]
 
   $directories = [
     '/var/log/skyline',
@@ -35,16 +29,46 @@ class skyline inherits skyline::params {
     ensure  => installed,
   }
 
-  package { $python_packages:
+  # package { $python_packages:
+  #   ensure   => installed,
+  #   provider => pip,
+  #   require  => Package['python-pip'],
+  # }
+
+  package { "numpy":
     ensure   => installed,
     provider => pip,
     require  => Package['python-pip'],
+  }
+
+  package { "scipy":
+    ensure   => installed,
+    provider => pip,
+    require  => Package['numpy'],
+  }
+
+  package { "pandas":
+    ensure   => installed,
+    provider => pip,
+    require  => Package['scipy'],
+  }
+
+  package { "patsy":
+    ensure   => installed,
+    provider => pip,
+    require  => Package['pandas'],
   }
 
   package { "statsmodels":
     ensure   => installed,
     provider => pip,
     require  => Package['patsy'],
+  }
+
+  package { "msgpack_python":
+    ensure   => installed,
+    provider => pip,
+    require  => Package['statsmodels'],
   }
 
   file { $directories:
