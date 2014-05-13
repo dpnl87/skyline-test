@@ -6,16 +6,18 @@ class skyline inherits skyline::params {
     $redis_package,
     'python-redis',
     'git',
+    'numpy',
+    'scipy',
+    'python-pandas',
+    'sympy',
+    'python-nose',
   ]
 
   $python_packages = [
-    'numpy',
-    'scipy',
     'hiredis',
     'python-daemon',
     'flask',
     'simplejson',
-    'pandas',
     'patsy',
     'msgpack_python',
     'unittest2',
