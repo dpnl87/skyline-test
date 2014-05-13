@@ -8,7 +8,6 @@ class skyline inherits skyline::params {
     'git',
     'numpy',
     'scipy',
-    'python-pandas',
     'sympy',
     'python-nose',
   ]
@@ -22,6 +21,7 @@ class skyline inherits skyline::params {
     'msgpack_python',
     'unittest2',
     'mock',
+    'pandas',
   ]
 
   $directories = [
