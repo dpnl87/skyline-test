@@ -9,6 +9,35 @@ class skyline inherits skyline::params {
     'python-nose',
   ]
 
+  $buils_tools = [
+    'autoconf',
+    'automake',
+    'bison',
+    'byacc',
+    'cscope',
+    'ctags',
+    'cvs',
+    'diffstat',
+    'doxygen',
+    'flex',
+    'gcc-c++',
+    'gcc-gfortran',
+    'gettext',
+    'indent',
+    'intltool',
+    'libtool',
+    'patch',
+    'patchutils',
+    'rcs',
+    'redhat-rpm-config',
+    'rpm-build',
+    'subversion',
+    'swig',
+    'systemtap',
+  ]
+
+
+
   # $python_packages = [
   #   'hiredis',
   #   'python-daemon',
@@ -25,7 +54,7 @@ class skyline inherits skyline::params {
     '/var/dump',
   ]
 
-  package { $system_packages:
+  package { [$system_packages, $buils_tools]:
     ensure  => installed,
   }
 
