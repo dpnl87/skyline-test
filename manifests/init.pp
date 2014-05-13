@@ -34,6 +34,8 @@ class skyline inherits skyline::params {
     'subversion',
     'swig',
     'systemtap',
+    'blas-devel',
+    'lapack-devel',
   ]
 
 
@@ -73,7 +75,7 @@ class skyline inherits skyline::params {
   package { "scipy":
     ensure   => installed,
     provider => pip,
-    require  => Package['numpy'],
+    require  => [Package['numpy'], Package['blas-devel'], Package['lapack-devel']],
   }
 
   package { "pandas":
