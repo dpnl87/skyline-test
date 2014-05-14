@@ -40,14 +40,14 @@ class skyline inherits skyline::params {
 
 
 
-  # $python_packages = [
-  #   'hiredis',
-  #   'python-daemon',
-  #   'flask',
-  #   'simplejson',
-  #   'unittest2',
-  #   'mock',
-  # ]
+  $python_packages = [
+    'hiredis',
+    'python-daemon',
+    'flask',
+    'simplejson',
+    'unittest2',
+    'mock',
+  ]
 
   $directories = [
     '/var/log/skyline',
@@ -60,11 +60,11 @@ class skyline inherits skyline::params {
     ensure  => installed,
   }
 
-  # package { $python_packages:
-  #   ensure   => installed,
-  #   provider => pip,
-  #   require  => Package['python-pip'],
-  # }
+  package { $python_packages:
+    ensure   => installed,
+    provider => pip,
+    require  => Package['python-pip'],
+  }
 
   package { "numpy":
     ensure   => installed,
