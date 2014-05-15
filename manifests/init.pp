@@ -118,6 +118,18 @@ class skyline inherits skyline::params {
     content => template('skyline/settings.py.erb'),
   }
 
+  file { '/etc/redis.conf':
+    ensure  => present,
+    content => template('skyline/redis.conf.erb'),
+    notify  => Service['redis'],
+  }
+
+  service { 'redis':
+    ensure  => running,
+    enable  => true,
+    require => Package[$redis_package],
+  }
+
   #include skyline::service
 
 }
