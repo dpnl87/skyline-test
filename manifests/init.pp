@@ -91,7 +91,6 @@ class skyline {
     ensure   => installed,
     provider => pip,
     require  => $required_scipy_packages,
-    ,
   }
 
   package { 'pandas':
