@@ -1,9 +1,20 @@
-class skyline inherits skyline::params {
+# Class: skyline
+#
+# Parameters:
+#
+# Actions:
+#
+# Requires:
+#
+# Sample Usage:
+#  class { 'skyline': }
+#
+class skyline {
 
   $system_packages = [
     'python-pip',
-    $python_dev_pkg,
-    $redis_package,
+    $skyline::params::python_dev_pkg,
+    $skyline::params::redis_package,
     'python-redis',
     'git',
     'python-nose',
@@ -38,8 +49,6 @@ class skyline inherits skyline::params {
     'lapack-devel',
   ]
 
-
-
   $python_packages = [
     'hiredis',
     'python-daemon',
@@ -56,6 +65,12 @@ class skyline inherits skyline::params {
     '/var/dump',
   ]
 
+  $required_scipy_packages = [
+    Package['numpy'],
+    Package['blas-devel'],
+    Package['lapack-devel']
+  ]
+
   package { [$system_packages, $buils_tools]:
     ensure  => installed,
   }
@@ -66,37 +81,38 @@ class skyline inherits skyline::params {
     require  => Package['python-pip'],
   }
 
-  package { "numpy":
+  package { 'numpy':
     ensure   => installed,
     provider => pip,
     require  => Package['python-pip'],
   }
 
-  package { "scipy":
+  package { 'scipy':
     ensure   => installed,
     provider => pip,
-    require  => [Package['numpy'], Package['blas-devel'], Package['lapack-devel']],
+    require  => $required_scipy_packages,
+    ,
   }
 
-  package { "pandas":
+  package { 'pandas':
     ensure   => installed,
     provider => pip,
     require  => Package['scipy'],
   }
 
-  package { "patsy":
+  package { 'patsy':
     ensure   => installed,
     provider => pip,
     require  => Package['pandas'],
   }
 
-  package { "statsmodels":
+  package { 'statsmodels':
     ensure   => installed,
     provider => pip,
     require  => Package['patsy'],
   }
 
-  package { "msgpack_python":
+  package { 'msgpack_python':
     ensure   => installed,
     provider => pip,
     require  => Package['statsmodels'],
@@ -127,7 +143,7 @@ class skyline inherits skyline::params {
   service { 'redis':
     ensure  => running,
     enable  => true,
-    require => Package[$redis_package],
+    require => Package[$skyline::params::redis_package],
   }
 
   #include skyline::service
