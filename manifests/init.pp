@@ -11,6 +11,8 @@
 #
 class skyline {
 
+  include skyline::params
+
   $system_packages = [
     'python-pip',
     $skyline::params::python_dev_pkg,
